@@ -36,6 +36,25 @@ endif
 
 "[user settings]
 set number
+set mouse=a
+set termguicolors
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set softtabstop=4
+set textwidth=80
+set wrap
+set ruler
+set showmatch
+set incsearch
+set ignorecase
+set nobackup
+set noswapfile
+set autochdir
+set noerrorbells
+set history=1000
+set autoread
 
 "[key maps]
 "[@summary use 'F2' to open defx]
