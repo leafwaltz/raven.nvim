@@ -29,7 +29,14 @@ if dein#load_state('~/.cache/dein')
 
 "[color themes]
     call dein#add('~/.cache/dein/repos/github.com/morhetz/gruvbox')
-    
+
+"[advanced airline based on vim-airline]
+    call dein#add('~/.cache/dein/repos/github.com/vim-airline/vim-airline')
+    call dein#add('~/.cache/dein/repos/github.com/vim-airline/vim-airline-themes')
+
+"[asyncrun.vim]
+    call dein#add('~/.cache/dein/repos/github.com/skywind3000/asyncrun.vim')
+
     call dein#end()
     call dein#save_state()
 endif
@@ -57,9 +64,21 @@ set history=1000
 set autoread
 
 "[key maps]
+"[@summary use 'F1' to open quickfix window]
+map <silent> <F1> :copen 10<cr>
+imap <silent> <F1> <Esc>:copen 10<cr>
+
 "[@summary use 'F2' to open defx]
 map <silent> <F2> :Defx<cr>
 imap <silent> <F2> <Esc>:Defx<cr>i
+
+"[@summary use 'F3' to close window]
+map <silent> <F3> :q<cr>
+imap <silent> <F3> <Esc>:q<cr>
+
+"[@summary use 'F4' to close nvim]
+map <silent> <F4> :wq<cr>
+imap <silent> <F4> <Esc>:wq<cr>
 
 "[auto complete]
 "[[ncm2 setting]]
@@ -164,6 +183,12 @@ function! s:defx_user_settings() abort
 	nnoremap <silent><buffer><expr> cd
 	\ defx#do_action('change_vim_cwd')
 endfunction
+
+"[vim-airline]
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'default'
 
 filetype plugin indent on
 syntax enable
