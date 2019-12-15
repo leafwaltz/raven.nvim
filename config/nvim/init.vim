@@ -37,6 +37,15 @@ if dein#load_state('~/.cache/dein')
 "[asyncrun.vim]
     call dein#add('~/.cache/dein/repos/github.com/skywind3000/asyncrun.vim')
 
+"[indent line based on indentLine]
+    call dein#add('~/.cache/dein/repos/github.com/Yggdroot/indentLine')
+
+"[auto save based on vim-auto-save]
+    call dein#add('~/.cache/dein/repos/github.com/907th/vim-auto-save')
+
+"[advanced terminal based on neoterm]
+    call dein#add('~/.cache/dein/repos/github.com/kassio/neoterm')
+
     call dein#end()
     call dein#save_state()
 endif
@@ -63,10 +72,13 @@ set noerrorbells
 set history=1000
 set autoread
 
+let g:auto_save = 1
+
 "[key maps]
+let mapleader=','
 "[@summary use 'F1' to open quickfix window]
-map <silent> <F1> :copen 10<cr>
-imap <silent> <F1> <Esc>:copen 10<cr>
+map <silent> <F1> :call asyncrun#quickfix_toggle(8)<cr>
+imap <silent> <F1> <Esc>:call asyncrun#quickfix_toggle(8)<cr>
 
 "[@summary use 'F2' to open defx]
 map <silent> <F2> :Defx<cr>
@@ -79,6 +91,23 @@ imap <silent> <F3> <Esc>:q<cr>
 "[@summary use 'F4' to close nvim]
 map <silent> <F4> :wq<cr>
 imap <silent> <F4> <Esc>:wq<cr>
+
+"[@summary use 'F5' to toggle indent line]
+map <silent> <F5> :IndentLinesToggle<cr>
+imap <silent> <F5> <Esc>:IndentLinesToggle<cr>i
+
+"[@summary use 'F6' to indent code]
+map <silent> <F6> gg=G
+imap <silent> <F6> <Esc>gg=Gi
+
+"[@summary use 'ctrl-t' to create a new terminal]
+nnoremap <silent> <C-t> :<C-u>exec 'Tnew'<cr>
+"[@summary use 'ctrl-t-ctrl-t' to close all terminals]
+nnoremap <silent> <C-t><C-t> :<C-u>exec 'TcloseAll!'<cr>
+"[@summary use '3<leader>t to close terminal-3 etc.']
+nnoremap <silent> <leader>t :<C-u>exec v:count.'Tclose'<cr>
+"[@summary use '3<leader>T to clear terminal-3 etc.']
+nnoremap <silent> <leader>T :<C-u>exec v:count.'Tclear'<cr>
 
 "[auto complete]
 "[[ncm2 setting]]
@@ -189,6 +218,17 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
+
+"[indentLine]
+let g:indenLine_enabled = 1
+
+"[vim-auto-save]
+let g:auto_save_silent = 1 
+let g:auto_save_events = ["InsertLeave", "TextChanged"]
+
+"[neoterm]
+let g:neoterm_size = 5 
+let g:neoterm_default_mod = 'botright'
 
 filetype plugin indent on
 syntax enable
